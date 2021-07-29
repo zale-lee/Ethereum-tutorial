@@ -7,7 +7,7 @@ Trie树，又称字典树，单词查找树或者前缀树，是一种用于快�
 
 Trie树可以利用字符串的公共前缀来节约存储空间。如下图所示，该trie树用10个节点保存了6个字符串：tea，ten，to，in，inn，int：
 
-![image](picture/trie_1.jpg)
+![image](./picture/trie_1.jpg)
 
 在该trie树中，字符串in，inn和int的公共前缀是“in”，因此可以只存储一份“in”以节省空间。当然，如果系统中存在大量字符串且这些字符串基本没有公共前缀，则相应的trie树将非常消耗内存，这也是trie树的一个缺点。
 
@@ -33,7 +33,7 @@ Trie 的插入和查询效率都是 O(m)，其中 m 是待插入/查询的字符
 
 ![Optimization of Tire to Patricia](picture/patricia_tire.png)
 
-![image](picture/trie_2.png)
+![image](./picture/trie_2.png)
 
 上图存储的8个Key Value对，可以看到前缀树的特点。
 
@@ -69,7 +69,7 @@ Merkle Patricia Tree 默克尔-帕特里夏树是一种融合了默克尔树和�
 
 Merkle Tree的主要作用是当我拿到Top Hash的时候，这个hash值代表了整颗树的信息摘要，当树里面任何一个数据发生了变动，都会导致Top Hash的值发生变化。 而Top Hash的值是会存储到区块链的区块头里面去的， 区块头是必须经过工作量证明。 这也就是说我只要拿到一个区块头，就可以对区块信息进行验证。
 
-![image](picture/trie_3.png)
+![image](./picture/trie_3.png)
 
 举两个实际的例子，你就能很好的理解默克尔树的作用。
 
@@ -103,7 +103,7 @@ BitTorrent 是一种中心索引式的 P2P 文件分析通信协议。进行 P2P
 - 状态树(账号信息， 合约账户和用户账户)
 
 下图中是两个区块头，其中state root，tx root receipt root分别存储了这三棵树的树根，第二个区块显示了当账号 175的数据变更(27 -> 45)的时候，只需要存储跟这个账号相关的部分数据，而且老的区块中的数据还是可以正常访问。(这个有点类似与函数式编程语言中的不可变的数据结构的实现)
-![image](picture/trie_4.png)
+![image](./picture/trie_4.png)
 详细结构为
 ![world state trie](picture/worldstatetrie.png)
 MPT 在以太坊中作为键值存储的数据结构，使得插入，查找，删除的复杂度为 O(log(n))，并且能获得默克尔树的全部特性。
@@ -123,24 +123,24 @@ MPT 在以太坊中作为键值存储的数据结构，使得插入，查找，�
 ## 6. 黄皮书形式化定义(Appendix D. Modified Merkle Patricia Tree)
 
 正式地，我们假设输入值J，包含Key Value对的集合（Key Value都是字节数组）：
-![image](picture/trie_5.png)
+![image](./picture/trie_5.png)
 
 当处理这样一个集合的时候，我们使用下面的这样标识表示数据的 Key和Value(对于J集合中的任意一个I， I0表示Key， I1表示Value)
 
-![image](picture/trie_6.png)
+![image](./picture/trie_6.png)
 
 对于任何特定的字节，我们可以表示为对应的半字节（nibble），其中Y集合在Hex-Prefix Encoding中有说明，意为半字节（4bit）集合（之所以采用半字节，其与后续说明的分支节点branch node结构以及key中编码flag有关）
 
-![image](picture/trie_7.png)
+![image](./picture/trie_7.png)
 
 我们定义了TRIE函数，用来表示树根的HASH值（其中c函数的第二个参数，意为构建完成后树的层数。root的值为0）
 
-![image](picture/trie_8.png)
+![image](./picture/trie_8.png)
 
 我们还定义一个函数n，这个trie的节点函数。 当组成节点时，我们使用RLP对结构进行编码。 作为降低存储复杂度的手段，对于RLP少于32字节的节点，我们直接存储其RLP值， 对于那些较大的，我们存储其HASH节点。
 我们用c来定义节点组成函数：
 
-![image](picture/trie_9.png)
+![image](./picture/trie_9.png)
 
 以类似于基数树的方式，当Trie树从根遍历到叶时，可以构建单个键值对。 Key通过遍历累积，从每个分支节点获取单个半字节（与基数树一样）。 与基数树不同，在共享相同前缀的多个Key的情况下，或者在具有唯一后缀的单个Key的情况下，提供两个优化节点。的情况下，或者在具有唯一后缀的单个密钥的情况下，提供两个优化节点。 因此，当遍历时，可能从其他两个节点类型，扩展和叶中的每一个潜在地获取多个半字节。在Trie树中有三种节点：
 
@@ -151,7 +151,7 @@ MPT 在以太坊中作为键值存储的数据结构，使得插入，查找，�
 分支节点只有在需要的时候使用， 对于一个只有一个非空 key value对的Trie树，可能不存在分支节点。 如果使用公式来定义这三种节点， 那么公式如下：
 图中的HP函数代表Hex-Prefix Encoding，是一种半字节编码格式，RLP是使用RLP进行序列化的函数。
 
-![image](picture/trie_10.png)
+![image](./picture/trie_10.png)
 
 对于上图的三种情况的解释
 
@@ -166,7 +166,7 @@ MPT 在以太坊中作为键值存储的数据结构，使得插入，查找，�
 
 它被定义为从一系列半字节（由集合Y表示）与布尔值一起映射到字节序列（由集合B表示）的函数HP：
 
-![image](picture/hp_1.png)
+![image](./picture/hp_1.png)
 
 因此，第一个字节的高半字节包含两个标志; 最低bit位编码了长度的奇偶位，第二低的bit位编码了flag的值。 在偶数个半字节的情况下，第一个字节的低半字节为零，在奇数的情况下为第一个半字节。 所有剩余的半字节（现在是偶数）适合其余的字节。
 
@@ -597,9 +597,9 @@ func (t *Trie) delete(n node, prefix, key []byte) (bool, node, error) {
 
 Trie的序列化主要才作用了前面介绍的Compat Encoding和 RLP编码格式。 序列化的结构在黄皮书里面有详细的介绍。
 
-![image](picture/trie_8.png)
-![image](picture/trie_9.png)
-![image](picture/trie_10.png)
+![image](./picture/trie_8.png)
+![image](./picture/trie_9.png)
+![image](./picture/trie_10.png)
 
 Trie树的使用方法在trie_test.go里面有比较详细的参考。 这里我列出一个简单的使用流程。首先创建一个空的Trie树，然后插入一些数据，最后调用trie.Commit()方法进行序列化并得到一个hash值(root), 也就是上图中的KEC(c(J,0))或者是TRIE(J)。
 

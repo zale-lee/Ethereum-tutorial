@@ -1,7 +1,7 @@
 # Account
 accounts包实现了以太坊客户端的钱包和账户管理。以太坊的钱包提供了keyStore, usb。同时以太坊合约的ABI的代码也放在了account/abi目录。 
 ## 1. 组件关系
-![](https://github.com/Billy1900/Ethereum-tutorial/blob/master/picture/accounts.png)
+![](./picture/accounts.png)
 ## 2. accounts支持的钱包类型
 在accounts中总共支持两大类共4种钱包类型。两大类包括keystore和usbwallet；其中keystore中的私钥存储可以分为加密的和不加密的；usbwallet支持ledger和trenzer两种硬件钱包。
 
@@ -286,7 +286,7 @@ update在 NewManager 作为一个 goroutine 被调用，一直运行，监控所
 			}
 		}
 	}
-	
+
 **4) backend**
 
 返回backend
@@ -295,7 +295,7 @@ update在 NewManager 作为一个 goroutine 被调用，一直运行，监控所
 	func (am *Manager) Backends(kind reflect.Type) []Backend {
 		return am.backends[kind]
 	}
-	
+
 **5) subscribe**
 
 订阅消息

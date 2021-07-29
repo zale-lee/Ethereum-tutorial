@@ -8,20 +8,20 @@ eth的源码又下面几个包
 
 eth 协议部分源码分析
 
-- [以太坊的网络协议大概流程](eth以太坊协议分析.md)
+- [以太坊的网络协议大概流程](./eth以太坊协议分析.md)
 
 fetcher部分的源码分析
 
-- [fetch部分源码分析](eth-fetcher源码分析.md)
+- [fetch部分源码分析](./fetcher源码分析.md)
 
 downloader 部分源码分析
 	
-- [节点快速同步算法](以太坊fast%20sync算法.md)
-- [用来提供下载任务的调度和结果组装 queue.go](eth-downloader-queue.go源码分析.md)
-- [用来代表对端，提供QoS等功能 peer.go](eth-downloader-peer源码分析.md)
-- [快速同步算法 用来提供Pivot point的 state-root的同步 statesync.go](eth-downloader-statesync.md)
-- [同步的大致流程的分析 ](eth-downloader源码分析.md)
+- [节点快速同步算法](./以太坊fastSync算法.md)
+- [用来提供下载任务的调度和结果组装 queue.go](./downloader-queue.go源码分析.md)
+- [用来代表对端，提供QoS等功能 peer.go](./downloader-peer源码分析.md)
+- [快速同步算法 用来提供Pivot point的 state-root的同步 statesync.go](./downloader-statesync.md)
+- [同步的大致流程的分析 ](./downloader源码分析.md)
 
 filter 部分源码分析
 
-- [提供布隆过滤器的查询和RPC过滤功能](eth-bloombits和filter源码分析.md)
+- [提供布隆过滤器的查询和RPC过滤功能](./bloombits和filter源码分析.md)

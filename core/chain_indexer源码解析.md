@@ -341,7 +341,7 @@ newHead方法,通知indexer新的区块链头，或者是需要重建索引，ne
 父子索引数据的关系
 父Indexer负载事件的监听然后把结果通过newHead传递给子Indexer的updateLoop来处理。
 
-![image](picture/chainindexer_1.png)
+![image](./picture/chainindexer_1.png)
 
 setValidSections方法，写入当前已经存储的sections的数量。 如果传入的值小于已经存储的数量，那么从数据库里面删除对应的section
 

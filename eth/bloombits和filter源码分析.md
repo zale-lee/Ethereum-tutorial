@@ -4,26 +4,26 @@
 
 而我们的一个交易的收据包含了很多的日志记录。 每个日志记录包含了 合约的地址， 多个Topic。 而在我们的收据中也存在一个布隆过滤器，这个布隆过滤器记录了所有的日志记录的信息。
 
-![image](picture/bloom_1.png)
+![image](./picture/bloom_1.png)
 
 如果我们看黄皮书里面对日志记录的形式化定义。
 
 O代表我们的日志记录，Oa代表logger的地址，Oto,Ot1代表日志的Topics， Od代表时间。
 
-![image](picture/bloom_2.png)
+![image](./picture/bloom_2.png)
 
 Oa是20个字节，Ot是32个字节，Od是很多字节
 
-![image](picture/bloom_3.png)
+![image](./picture/bloom_3.png)
 
 
 我们定义了一个布隆过滤器函数M，用来把一个日志对象转换成256字节的hash
 
-![image](picture/bloom_4.png)
+![image](./picture/bloom_4.png)
 
 M3:2045是一个特别的函数，用来设置2048个bit位中的三位为1。 具体的方法请参考下面的公式。
 
-![image](picture/bloom_5.png)
+![image](./picture/bloom_5.png)
 
 对于任意的输入值，首先求他的KEC输出， 然后通过取KEC输出的 [0,1] [2,3],[4,5] 这几位的值 对2048取模， 得到三个值， 这三个值就是输出的2048中需要置位的下标。 也就是说对于任何一个输入，如果它对应的三个下标的值不都为1，那么它肯定不在这个区块中。 当如如果对应的三位都为1，也不能说明一定在这个区块中。 这就是布隆过滤器的特性。
 
@@ -60,7 +60,7 @@ M3:2045是一个特别的函数，用来设置2048个bit位中的三位为1。 �
 - A[2047][1]=blockchain[section*4096+1].logBloom[2047],
 
 如果Section填充完毕，那么会写成2048个KV。 
-![image](picture/bloom_6.png)
+![image](./picture/bloom_6.png)
 
 
 ## bloombit.go 代码分析

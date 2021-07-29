@@ -24,8 +24,8 @@
 通常智能合约的开发流程是使用 solidity 编写逻辑代码，通过编译器编译成 bytecode，然后发布到以太坊上，以太坊底层通过 EVM 模块支持合约的执行和调用，调用时根据合约地址获取到代码，即合约的字节码，生成环境后载入到 EVM 执行。
 
 大致流程如下图1，指令的执行过程如下图2，从 EVM code 中不断取出指令执行，利用 Gas 来实现限制循环，利用栈来进行操作，内存存储临时变量，账户状态中的 storage 用来存储数据。
-![image](https://github.com/Billy1900/Ethereum-tutorial/blob/master/picture/EVM-1.jpg)
-![image](https://github.com/Billy1900/Ethereum-tutorial/blob/master/picture/EVM-2.png)
+![image](./picture/EVM-1.jpg)
+![image](./picture/EVM-2.png)
 
 ## 4. 代码结构
 EVM 模块的文件比较多，这里先给出每个文件的简述，先对每个文件提供的功能有个简单的了解。

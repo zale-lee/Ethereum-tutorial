@@ -26,11 +26,11 @@ RLPx使用了(Perfect Forward Secrecy), 简单来说。 链接的两方生成生
 #### 描述
 迪菲－赫尔曼通过公共信道交换一个信息，就可以创建一个可以用于在公共信道上安全通信的共享秘密（shared secret）。
 以下解释它的过程（包括算法的数学部分）：
-![image](picture/rlpx_1.png)
+![image](../picture/rlpx_1.png)
 
 最简单，最早提出的这个协议使用一个质数p的整数模n乘法群以及其原根g。下面展示这个算法，绿色表示非秘密信息, 红色粗体表示秘密信息：
-![image](picture/rlpx_2.png)
-![image](picture/rlpx_3.png)
+![image](../picture/rlpx_2.png)
+![image](../picture/rlpx_3.png)
 
 ## p2p/rlpx.go源码解读
 这个文件实现了RLPx的链路协议。

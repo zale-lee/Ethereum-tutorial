@@ -7,7 +7,7 @@
 
 安装好之后，设置环境变量，把C:\Go\bin目录添加到你的PATH环境变量， 然后增加一个GOPATH的环境变量，GOPATH的值设置为你的GO语言下载的代码路径(我设置的是C:\GOPATH)
 
-![image](https://raw.githubusercontent.com/wugang33/go-ethereum-code-analysis/master/picture/go_env_1.png)
+![image](./picture/go_env_1.png)
 
 安装git工具，请参考网络上的教程安装git工具， go语言从github自动下载代码需要git工具的支持
 
@@ -36,7 +36,7 @@
 ![image](https://raw.githubusercontent.com/wugang33/go-ethereum-code-analysis/master/picture/go_env_2.png)
 
 ## Ubuntu 16.04 64bit
- 
+
 go安装包进行安装
 
 	apt install golang-go git -y

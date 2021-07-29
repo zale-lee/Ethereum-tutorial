@@ -514,7 +514,7 @@ func hashimotoFull(dataset []uint32, hash []byte, nonce uint64) ([]byte, []byte)
 }
 ```
 hashimoto用于聚合数据以产生特定的后部的hash和nonce值。
-![图片来源：https://blog.csdn.net/metal1/article/details/79682636](picture/pow_hashimoto.png)
+![图片来源：https://blog.csdn.net/metal1/article/details/79682636](./picture/pow_hashimoto.png)
 简述该部分流程:
 - 首先，hashimoto()函数将入参@hash和@nonce合并成一个40 bytes长的数组，取它的SHA-512哈希值取名seed，长度为64 bytes。
 - 然后，将seed[]转化成以uint32为元素的数组mix[]，注意一个uint32数等于4 bytes，故而seed[]只能转化成16个uint32数，而mix[]数组长度32，所以此时mix[]数组前后各半是等值的。

@@ -3,7 +3,7 @@ core/state 包主要为以太坊的state trie提供了一层缓存层(cache)
 
 state的结构主要如下图
 
-![image](picture/state_1.png)
+![image](./picture/state_1.png)
 
 蓝色的矩形代表本模块， 灰色的矩形代表外部模块。
 

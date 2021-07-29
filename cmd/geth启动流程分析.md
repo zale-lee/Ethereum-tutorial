@@ -323,5 +323,5 @@ startNode
 
 目前所有的常驻的goroutine有下面一些。  主要是p2p相关的服务。 以及RPC相关的服务。
 
-![image](picture/geth_1.png)
+![image](./picture/geth_1.png)
 

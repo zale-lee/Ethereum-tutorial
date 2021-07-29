@@ -2,14 +2,14 @@
 
 clique 主要涉及POA，用于测试网络； ethash主要涉及POW，用于主网络； misc是用于之前DAO分叉的文件。
 下图是consensus文件中各组件的关系图：
-![image](https://github.com/Billy1900/Ethereum-tutorial/blob/master/picture/Consensus-architecture.png)
+![image](./picture/Consensus-architecture.png)
 Engine接口定义了共识引擎需要实现的所有函数，实际上按功能可以划分为2类：
 - 区块验证类：以Verify开头，当收到新区块时，需要先验证区块的有效性
 - 区块盖章类：包括Prepare/Finalize/Seal等，用于最终生成有效区块（比如添加工作量证明）
 与区块验证相关联的还有2个外部接口：Processor用于执行交易，而Validator用于验证区块内容和状态。另外，由于需要访问以前的区块链数据，抽象出了一个ChainReader接口，BlockChain和HeaderChain都实现了该接口以完成对数据的访问。
 
 ## 1.区块验证流程
-![image](https://github.com/Billy1900/Ethereum-tutorial/blob/master/picture/block-verification-process.png)
+![image](./picture/block-verification-process.png)
 Downloader收到新区块后会调用BlockChain的InsertChain()函数插入新区块。在插入之前需要先要验证区块的有效性，基本分为4个步骤：
 - 验证区块头：调用Ethash.VerifyHeaders()
 - 验证区块内容：调用BlockValidator.VerifyBody()（内部还会调用Ethash.VerifyUncles()）
@@ -18,7 +18,7 @@ Downloader收到新区块后会调用BlockChain的InsertChain()函数插入新�
 如果验证成功，则往数据库中写入区块信息，然后广播ChainHeadEvent事件。
 
 ## 2.区块盖章流程
-![image](https://github.com/Billy1900/Ethereum-tutorial/blob/master/picture/block-seal-process.png)
+![image](./picture/block-seal-process.png)
 新产生的区块必须经过“盖章(seal)”才能成为有效区块，具体到Ethash来说，就是要执行POW计算以获得低于设定难度的nonce值。这个其实在之前的挖矿流程分析中已经接触过了，主要分为3个步骤：
 - 准备工作：调用Ethash.Prepare()计算难度值
 - 生成区块：调用Ethash.Finalize()打包新区块
@@ -147,7 +147,7 @@ hashimoto其流程是
 - 最后，将折叠后的 mix[] 由长度为8的 uint32 型数组直接转化成一个长度32的 byte 数组，这就是返回值 digest；同时将之前的 seed[] 数组与 digest 合并再取一次 SHA-256 哈希值，得到的长度32的 byte 数组，即返回值 result。
 
 经过多次多种哈希运算，hashimoto 返回两个长度均为32的 byte 数组 digest 和 result，前文已提到，在 Ethash 的 mine 方法里，挖矿时需要经过一个死循环，直到找到一个 nonce，使得 hashimoto 返回的 result 和 target 是相等的，这时就表示符合要求，digest 被取 SHA3-256 哈希后也会存到区块头的 MixDigest 字段里，待 Ethash.VerifySeal() 进行验证。
-![image](https://github.com/Billy1900/Ethereum-tutorial/blob/master/picture/hashimoto-flow.png)
+![image](./picture/hashimoto-flow.png)
 
 ### 3.3　ethan/api.go
 the purpose is that API exposes ethash related methods for the RPC interface.
